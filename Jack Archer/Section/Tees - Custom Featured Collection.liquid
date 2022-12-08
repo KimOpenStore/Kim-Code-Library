@@ -1,0 +1,98 @@
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column-tees-desktop {
+  float: left;
+  width: 25%;
+  margin-left: 60px;
+  height: 23rem;
+}
+
+.column-tees-mobile {
+  float: left;
+  width: 100%;
+  height: 27rem;
+}
+
+/* Clear floats after the columns */
+.tees-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media only screen and (max-width: 741px){
+    .column-tees-desktop {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 740px){
+    .column-tees-mobile {
+        display: none;
+    }
+}
+
+/* the rest css is applied the theme.css of the for this manual section */
+
+</style>
+</head>
+<body>
+
+<!-- desktop layout -->
+
+<div class="tees-row">
+  <div class="column-tees-desktop ProductItem \31\/4--lap-and-up">
+    <img src= "https://cdn.shopify.com/s/files/1/0531/1506/0388/products/JAShirt-Charcoal-Waistup8_800x_01b248aa-804c-4c6d-b218-0e4a743e96b0_800x.webp?v=1665062390" style="width: 100%;">
+    <center><h2 class="ProductItem__Title Heading u-h4"> Anytime Tees </h2></center>
+	<center></h3> in Asphalt </h3></center>
+    <center><a class="Button button-small-red"> Buy This Color </a></center>
+    <div class="ProductItem__PriceList ProductItem__PriceList--showOnHover Heading">
+    <span class="ProductItem__Price Price Price--highlight Text--subdued"> $52</span>
+    </div>
+  </div>
+  <div class="column-tees-desktop ProductItem \31\/4--lap-and-up">
+    <img src= "https://cdn.shopify.com/s/files/1/0531/1506/0388/products/JAShirt-Black-FullBody3_800x_a609e7c8-7c6d-4641-b8d3-42ab33b8c584_800x.webp?v=1665062390" style="width: 100%;">
+    <center><h2 class="ProductItem__Title Heading u-h4"> Anytime Tees </h2></center>
+	<center></h3> in Space Black </h3></center>
+    <center><a class="Button button-small-red"> Buy This Color </a></center>  
+    <div class="ProductItem__PriceList ProductItem__PriceList--showOnHover Heading">
+    <span class="ProductItem__Price Price Price--highlight Text--subdued"> $52</span>
+    </div>    
+  </div>
+  <div class="column-tees-desktop ProductItem \31\/4--lap-and-up">
+    <img src= "https://cdn.shopify.com/s/files/1/0531/1506/0388/products/JAShirt-Olive-Waistup3_1600x_f63f4dcb-84d6-4bee-a532-6efb60401a03_800x.webp?v=1665062390" style="width: 100%;">
+    <center><h2 class="ProductItem__Title Heading u-h4"> Anytime Tees </h2></center>
+	<center></h3> in Dark Olive </h3></center>
+    <center><a class="Button button-small-red"> Buy This Color </a></center> 
+    <div class="ProductItem__PriceList ProductItem__PriceList--showOnHover Heading">
+    <span class="ProductItem__Price Price Price--highlight Text--subdued"> $52</span>
+    </div>    
+  </div>   
+</div> 
+
+<!-- mobile layout -->  
+
+<div class="tees-row">
+  <div class="column-tees-mobile ProductItem \31\/4--lap-and-up">
+    <img src= "https://cdn.shopify.com/s/files/1/0531/1506/0388/products/JAShirt-Charcoal-Waistup8_800x_01b248aa-804c-4c6d-b218-0e4a743e96b0_800x.webp?v=1665062390" style="width: 100%;">
+    <center><h2 class="ProductItem__Title Heading u-h4"> Anytime Tees </h2></center>
+	<center></h3> in Asphalt </h3></center>
+    <center><a class="Button button-small-red"> Buy This Color </a></center>
+    <div class="ProductItem__PriceList ProductItem__PriceList--showOnHover Heading">
+    <span class="ProductItem__Price Price Price--highlight Text--subdued"> $52</span>
+    </div>     
+  </div>
+</div>  
+
+
+<!-- This is manual and used for Custom Liquid Section, 
+for css it used the theme.css of the theme itself, better you 
+change all the class id here for your preference on your own 
+theme.css 
+
+This code is created by Kimson Pomento, 
+with Assist of Aki Lamagna in Media Screen CSS -->
