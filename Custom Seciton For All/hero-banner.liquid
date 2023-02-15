@@ -1,0 +1,188 @@
+<!-- Hero Banner w/ image block & block settings - Kimson Pomento 02/15/2023 -->
+{% style %}
+
+#shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    {% if section.settings.width == 'wide' %}
+      width: 100%;
+    {% endif %}
+  }
+
+.responsive-desktop {
+  width: 100%;
+  max-width: auto;
+  height: auto;
+}
+
+.responsive-mobile {
+  width: 100%;
+  max-width: auto;
+  height: auto;
+}
+
+.block-title {
+  display:none;
+}  
+
+/* Responsive layout - makes the two different layout for desktop and mobile */
+@media screen and (max-width: 600px) {
+  .responsive-desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 601px){
+  .responsive-mobile{
+    display: none;
+  }
+}
+
+{% endstyle %}
+<section class="section
+                {{ section.settings.css_class }}
+                is-width-{{ section.settings.width }}
+                under-overlay-menu
+                {% if mobile_text_below_media == true %}
+                  mobile-text--below-media
+                  {% else %}
+                  mobile-text--over-media
+                {% endif %}
+                {% if caption_border_alpha != 0 %}
+                  has-border
+                {% endif %}
+                "
+                {% if section.settings.animation != "none" %}
+                  data-scroll-class="{{ section.settings.animation }}"
+                {% endif %}>
+  
+{% for block in section.blocks%}
+  <h3 class="block-title">{{ block.settings.block-title }}</h3>
+  <div class="responsive-desktop">
+  <a href="{{ block.settings.banner-link }}"><img src="{{ block.settings.image-desktop | img_url:'master' }}"/></a>
+  </div>
+  <div class="responsive-mobile">
+  <a href="{{ block.settings.banner-link }}"><img src="{{ block.settings.image-mobile | img_url:'master' }}"/></a>
+
+  </div>
+  {% endfor %}  
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Hero Banner - OS",
+    "settings": [
+      {
+       "type": "select",
+        "id": "width",
+        "label": "Width",
+        "default": "wide",
+        "options": [
+          {
+            "value": "half",
+            "label": "Half"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "wide",
+            "label": "Wide"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "animation",
+        "label": "Animation",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "fadeIn",
+            "label": "Fade in"
+          },
+          {
+            "value": "fadeInDown",
+            "label": "Fade in down"
+          },
+          {
+            "value": "fadeInLeft",
+            "label": "Fade. inlefet"
+          },
+          {
+            "value": "fadeInRight",
+            "label": "Fade in right"
+          },
+          {
+            "value": "slideInLeft",
+            "label": "Slide in left"
+          },
+          {
+            "value": "slideInRight",
+            "label": "Slide in right"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": " Top Spacing",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Bottom Spacing",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "unit": "px"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "image block",
+        "settings": [
+          {
+            "type": "url",
+            "label": "Image Link",
+            "id": "banner-link"
+          },
+          {
+            "type": "text",
+            "label": "Event Title",
+            "default": "Holiday Event Title",
+            "id": "block-title"
+          },
+          {
+            "type": "image_picker",
+            "label": "Desktop Image",
+            "id": "image-desktop"
+          },
+          {
+            "type": "image_picker",
+            "label": "Mobile Image",
+            "id": "image-mobile"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Banner - OS",
+        "category": "image"
+      }
+    ]
+  }
+{% endschema %}
