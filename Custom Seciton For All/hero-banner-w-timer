@@ -1,0 +1,744 @@
+
+{% style %}
+
+#shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    {% if section.settings.width == 'wide' %}
+      width: 100%;
+    {% endif %}
+  }
+
+.responsive-desktop {
+  width: 100%;
+  max-width: auto;
+  height: auto;
+}
+
+.responsive-mobile {
+  width: 100%;
+  max-width: auto;
+  height: auto;
+}
+
+.block-title {
+  display:none;
+}  
+
+/* Responsive layout - makes the two different layout for desktop and mobile */
+@media screen and (max-width: 600px) {
+  .responsive-desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 601px){
+  .responsive-mobile{
+    display: none;
+  }
+}
+
+{% endstyle %}
+<section class="section
+                {{ section.settings.css_class }}
+                is-width-{{ section.settings.width }}
+                under-overlay-menu
+                {% if mobile_text_below_media == true %}
+                  mobile-text--below-media
+                  {% else %}
+                  mobile-text--over-media
+                {% endif %}
+                {% if caption_border_alpha != 0 %}
+                  has-border
+                {% endif %}
+                "
+                {% if section.settings.animation != "none" %}
+                  data-scroll-class="{{ section.settings.animation }}"
+                {% endif %}>
+  
+{% for block in section.blocks%}
+  <h3 class="block-title">{{ block.settings.block-title }}</h3>
+  <div class="responsive-desktop">
+  <a href="{{ block.settings.banner-link }}"><img src="{{ block.settings.image-desktop | img_url:'master' }}"/></a>
+  </div>
+  <div class="responsive-mobile">
+  <a href="{{ block.settings.banner-link }}"><img src="{{ block.settings.image-mobile | img_url:'master' }}"/></a>
+
+  </div>
+  {% endfor %}  
+</section>
+
+  <script type="application/json" data-timer-settings>
+    {
+      "year": {{ year | json }},
+      "month": {{ month | json }},
+      "day": {{ day | json }},
+      "hour": {{ hour | json }},
+      "minute": {{ minute | json }},
+      "hideTimerOnComplete": {{ hide_block_on_complete | json }}
+    }
+  </script>
+
+{% schema %}
+  {
+    "name": "Hero Banner - OS",
+    "settings": [
+      {
+       "type": "select",
+        "id": "width",
+        "label": "Width",
+        "default": "wide",
+        "options": [
+          {
+            "value": "half",
+            "label": "Half"
+          },
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "wide",
+            "label": "Wide"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "animation",
+        "label": "Animation",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "fadeIn",
+            "label": "Fade in"
+          },
+          {
+            "value": "fadeInDown",
+            "label": "Fade in down"
+          },
+          {
+            "value": "fadeInLeft",
+            "label": "Fade. inlefet"
+          },
+          {
+            "value": "fadeInRight",
+            "label": "Fade in right"
+          },
+          {
+            "value": "slideInLeft",
+            "label": "Slide in left"
+          },
+          {
+            "value": "slideInRight",
+            "label": "Slide in right"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": " Top Spacing",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Bottom Spacing",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "unit": "px"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "image block",
+        "settings": [
+          {
+            "type": "url",
+            "label": "Image Link",
+            "id": "banner-link"
+          },
+          {
+            "type": "number",
+            "id": "year",
+            "label": "Year",
+            "default": 2023
+          },
+          {
+            "type": "select",
+            "id": "month",
+            "label": "Month",
+            "default": "1",
+            "options": [
+              {
+                "value": "1",
+                "label": "January"
+              },
+              {
+                "value": "2",
+                "label": "February"
+              },
+              {
+                "value": "3",
+                "label": "March"
+              },
+              {
+                "value": "4",
+                "label": "April"
+              },
+              {
+                "value": "5",
+                "label": "May"
+              },
+              {
+                "value": "6",
+                "label": "June"
+              },
+              {
+                "value": "7",
+                "label": "July"
+              },
+              {
+                "value": "8",
+                "label": "August"
+              },
+              {
+                "value": "9",
+                "label": "September"
+              },
+              {
+                "value": "10",
+                "label": "October"
+              },
+              {
+                "value": "11",
+                "label": "November"
+              },
+              {
+                "value": "12",
+                "label": "December"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "day",
+            "label": "Day",
+            "default": "1",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "3",
+                "label": "3"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              },
+              {
+                "value": "5",
+                "label": "5"
+              },
+              {
+                "value": "6",
+                "label": "6"
+              },
+              {
+                "value": "7",
+                "label": "7"
+              },
+              {
+                "value": "8",
+                "label": "8"
+              },
+              {
+                "value": "9",
+                "label": "9"
+              },
+              {
+                "value": "10",
+                "label": "10"
+              },
+              {
+                "value": "11",
+                "label": "11"
+              },
+              {
+                "value": "12",
+                "label": "12"
+              },
+              {
+                "value": "13",
+                "label": "13"
+              },
+              {
+                "value": "14",
+                "label": "14"
+              },
+              {
+                "value": "15",
+                "label": "15"
+              },
+              {
+                "value": "16",
+                "label": "16"
+              },
+              {
+                "value": "17",
+                "label": "17"
+              },
+              {
+                "value": "18",
+                "label": "18"
+              },
+              {
+                "value": "19",
+                "label": "19"
+              },
+              {
+                "value": "20",
+                "label": "20"
+              },
+              {
+                "value": "21",
+                "label": "21"
+              },
+              {
+                "value": "22",
+                "label": "22"
+              },
+              {
+                "value": "23",
+                "label": "23"
+              },
+              {
+                "value": "24",
+                "label": "24"
+              },
+              {
+                "value": "25",
+                "label": "25"
+              },
+              {
+                "value": "26",
+                "label": "26"
+              },
+              {
+                "value": "27",
+                "label": "27"
+              },
+              {
+                "value": "28",
+                "label": "28"
+              },
+              {
+                "value": "29",
+                "label": "29"
+              },
+              {
+                "value": "30",
+                "label": "30"
+              },
+              {
+                "value": "31",
+                "label": "31"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "hour",
+            "label": "Hours",
+            "default": "0",
+            "options": [
+              {
+                "value": "0",
+                "label": "12 AM (Midnight)"
+              },
+              {
+                "value": "01 AM",
+                "label": "01 AM"
+              },
+              {
+                "value": "02 AM",
+                "label": "02 AM"
+              },
+              {
+                "value": "03 AM",
+                "label": "03 AM"
+              },
+              {
+                "value": "04 AM",
+                "label": "04 AM"
+              },
+              {
+                "value": "05 AM",
+                "label": "05 AM"
+              },
+              {
+                "value": "06 AM",
+                "label": "06 AM"
+              },
+              {
+                "value": "07 AM",
+                "label": "07 AM"
+              },
+              {
+                "value": "08 AM",
+                "label": "08 AM"
+              },
+              {
+                "value": "09 AM",
+                "label": "09 AM"
+              },
+              {
+                "value": "10 AM",
+                "label": "10 AM"
+              },
+              {
+                "value": "11 AM",
+                "label": "11 AM"
+              },
+              {
+                "value": "12",
+                "label": "12 PM (Noon)"
+              },
+              {
+                "value": "01 PM",
+                "label": "01 PM"
+              },
+              {
+                "value": "02 PM",
+                "label": "02 PM"
+              },
+              {
+                "value": "03 PM",
+                "label": "03 PM"
+              },
+              {
+                "value": "04 PM",
+                "label": "04 PM"
+              },
+              {
+                "value": "05 PM",
+                "label": "05 PM"
+              },
+              {
+                "value": "06 PM",
+                "label": "06 PM"
+              },
+              {
+                "value": "07 PM",
+                "label": "07 PM"
+              },
+              {
+                "value": "08 PM",
+                "label": "08 PM"
+              },
+              {
+                "value": "09 PM",
+                "label": "09 PM"
+              },
+              {
+                "value": "10 PM",
+                "label": "10 PM"
+              },
+              {
+                "value": "11 PM",
+                "label": "11 PM"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "minute",
+            "label": "Minute",
+            "default": "1",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "3",
+                "label": "3"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              },
+              {
+                "value": "5",
+                "label": "5"
+              },
+              {
+                "value": "6",
+                "label": "6"
+              },
+              {
+                "value": "7",
+                "label": "7"
+              },
+              {
+                "value": "8",
+                "label": "8"
+              },
+              {
+                "value": "9",
+                "label": "9"
+              },
+              {
+                "value": "10",
+                "label": "10"
+              },
+              {
+                "value": "11",
+                "label": "11"
+              },
+              {
+                "value": "12",
+                "label": "12"
+              },
+              {
+                "value": "13",
+                "label": "13"
+              },
+              {
+                "value": "14",
+                "label": "14"
+              },
+              {
+                "value": "15",
+                "label": "15"
+              },
+              {
+                "value": "16",
+                "label": "16"
+              },
+              {
+                "value": "17",
+                "label": "17"
+              },
+              {
+                "value": "18",
+                "label": "18"
+              },
+              {
+                "value": "19",
+                "label": "19"
+              },
+              {
+                "value": "20",
+                "label": "20"
+              },
+              {
+                "value": "21",
+                "label": "21"
+              },
+              {
+                "value": "22",
+                "label": "22"
+              },
+              {
+                "value": "23",
+                "label": "23"
+              },
+              {
+                "value": "24",
+                "label": "24"
+              },
+              {
+                "value": "25",
+                "label": "25"
+              },
+              {
+                "value": "26",
+                "label": "26"
+              },
+              {
+                "value": "27",
+                "label": "27"
+              },
+              {
+                "value": "28",
+                "label": "28"
+              },
+              {
+                "value": "29",
+                "label": "29"
+              },
+              {
+                "value": "30",
+                "label": "30"
+              },
+              {
+                "value": "31",
+                "label": "31"
+              },
+              {
+                "value": "32",
+                "label": "32"
+              },
+              {
+                "value": "33",
+                "label": "33"
+              },
+              {
+                "value": "34",
+                "label": "34"
+              },
+              {
+                "value": "35",
+                "label": "35"
+              },
+              {
+                "value": "36",
+                "label": "36"
+              },
+              {
+                "value": "37",
+                "label": "37"
+              },
+              {
+                "value": "38",
+                "label": "38"
+              },
+              {
+                "value": "39",
+                "label": "39"
+              },
+              {
+                "value": "40",
+                "label": "40"
+              },
+              {
+                "value": "41",
+                "label": "41"
+              },
+              {
+                "value": "42",
+                "label": "42"
+              },
+              {
+                "value": "43",
+                "label": "43"
+              },
+              {
+                "value": "44",
+                "label": "44"
+              },
+              {
+                "value": "45",
+                "label": "45"
+              },
+              {
+                "value": "46",
+                "label": "46"
+              },
+              {
+                "value": "47",
+                "label": "47"
+              },
+              {
+                "value": "48",
+                "label": "48"
+              },
+              {
+                "value": "49",
+                "label": "49"
+              },
+              {
+                "value": "50",
+                "label": "50"
+              },
+              {
+                "value": "51",
+                "label": "51"
+              },
+              {
+                "value": "52",
+                "label": "52"
+              },
+              {
+                "value": "53",
+                "label": "53"
+              },
+              {
+                "value": "54",
+                "label": "54"
+              },
+              {
+                "value": "55",
+                "label": "55"
+              },
+              {
+                "value": "56",
+                "label": "56"
+              },
+              {
+                "value": "57",
+                "label": "57"
+              },
+              {
+                "value": "58",
+                "label": "58"
+              },
+              {
+                "value": "59",
+                "label": "59"
+              }
+            ]
+          },
+          {
+            "type": "checkbox",
+            "id": "hide_block_on_complete",
+            "label": "Hide block on complete"
+          },
+          {
+            "type": "text",
+            "label": "Event Title",
+            "default": "Holiday Event Title",
+            "id": "block-title"
+          },
+          {
+            "type": "image_picker",
+            "label": "Desktop Image",
+            "id": "image-desktop"
+          },
+          {
+            "type": "image_picker",
+            "label": "Mobile Image",
+            "id": "image-mobile"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Banner - OS",
+        "category": "image"
+      }
+    ]
+  }
+{% endschema %}
