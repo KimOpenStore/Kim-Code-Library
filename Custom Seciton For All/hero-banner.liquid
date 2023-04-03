@@ -1,31 +1,82 @@
-<!-- Hero Banner w/ image block & block settings - Kimson Pomento 02/15/2023 -->
-{% style %}
+<!-- Hero Banner w/ image block & block settings - Kimson Pomento 03/16/2023 Updated -->
 
+{% assign h2_mobile_title_font_size = section.settings.font_size_mobile_header | append: "px" %}
+{% assign text_mobile_title_font_size = section.settings.font_size_mobile_text | append: "px" %}
+{% assign h2_desktop_title_font_size = section.settings.font_size_desktop_header | append: "px" %}
+{% assign text_desktop_title_font_size = section.settings.font_size_desktop_text | append: "px" %}
+{% style %}
 #shopify-section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
-    margin-top: {{ section.settings.margin_top }}px;
-    margin-bottom: {{ section.settings.margin_bottom }}px;
     {% if section.settings.width == 'wide' %}
       width: 100%;
+      half: 50%;
     {% endif %}
   }
 
 .responsive-desktop {
   width: 100%;
-  max-width: auto;
   height: auto;
 }
 
 .responsive-mobile {
   width: 100%;
-  max-width: auto;
   height: auto;
+}  
+
+.hero-image {
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
+img {
+  width: 100%;
+}
+  
+.hero-text {
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-style: normal;
+  width: 100%;
+  padding: 20px 100px 55px;
+  padding-bottom: 100px;
+}
+  
 .block-title {
   display:none;
+}
+
+.block-description {
+  font-weight: 500;
 }  
+  
+.hero-text button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px 25px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-style: normal;
+  border-radius: 5px;
+  font-size: 16px!important;
+  padding: 12px 30px;
+  line-height: 2;
+}
+
+.hero-text button:hover {
+  background-color: #555;
+  color: white;
+}
 
 /* Responsive layout - makes the two different layout for desktop and mobile */
 @media screen and (max-width: 600px) {
@@ -33,13 +84,39 @@
     display: none;
   }
 }
+@media screen and (max-width: 600px) {
+  .hero-text {
+  text-align: center;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-style: normal;
+  width: 100%;
+  padding: inherit;
+  padding-bottom: 45em;
+  }
+}
+@media screen and (max-width: 600px) {
+  h2.block-heading {
+    font-weight: 700!important;
+  }
+}
+@media screen and (max-width: 600px) {
+  p.block-description {
+    font-weight: 500;
+    line-height: initial;
+  }
+}
+  
 
 @media screen and (min-width: 601px){
   .responsive-mobile{
     display: none;
   }
 }
-
+  
 {% endstyle %}
 <section class="section
                 {{ section.settings.css_class }}
@@ -57,24 +134,37 @@
                 {% if section.settings.animation != "none" %}
                   data-scroll-class="{{ section.settings.animation }}"
                 {% endif %}>
-  
-{% for block in section.blocks%}
-  <h3 class="block-title">{{ block.settings.block-title }}</h3>
-  <div class="responsive-desktop">
-  <a href="{{ block.settings.banner-link }}"><img src="{{ block.settings.image-desktop | img_url:'master' }}"/></a>
-  </div>
-  <div class="responsive-mobile">
-  <a href="{{ block.settings.banner-link }}"><img src="{{ block.settings.image-mobile | img_url:'master' }}"/></a>
 
+{% for block in section.blocks%}
+<h3 class="block-title">{{ block.settings.block-title }}</h3>
+<div class="responsive-desktop">  
+<div class="hero-image">
+  <a href="{{ block.settings.banner-link }}"><img src="{{ block.settings.image-desktop | img_url:'master' }}"/></a>
+  <div class="hero-text">
+    <h2 style="font-size: {{ h2_desktop_title_font_size }}!important;  color: {{ block.settings.color_text }}; font-weight: 700!important;" class= "block-heading">{{ block.settings.block-heading }}</h2>
+    <p class="block-description" style="color: {{ block.settings.color_desc }}!important; font-size: {{ text_desktop_title_font_size }}!important;">{{ block.settings.block-description }}</p>
+    <a href="{{ block.settings.button-link }}"><button class="block-button" style="background-color: {{ block.settings.button_bg_color }};">{{ block.settings.block-button }}</button></a>
   </div>
+</div>
+</div>
+
+<div class="responsive-mobile">  
+<div class="hero-image">
+  <a href="{{ block.settings.banner-link }}"><img src="{{ block.settings.image-mobile | img_url:'master' }}"/></a>
+  <div class="hero-text">
+    <h2 style="font-size: {{ h2_mobile_title_font_size }}!important; color: {{ block.settings.color_text }};" class= "block-heading">{{ block.settings.block-heading }}</h2>
+    <p class="block-description" style="color: {{ block.settings.color_desc }}!important; font-size: {{ text_mobile_title_font_size }}!important;">{{ block.settings.block-description }}</p>
+    <a href="{{ block.settings.button-link }}"><button class="block-button" style="background-color: {{ block.settings.button_bg_color }};">{{ block.settings.block-button }}</button></a>
+  </div>
+</div>
+</div>
+  
   {% endfor %}  
 </section>
 
-
-
 {% schema %}
   {
-    "name": "Hero Banner - OS",
+    "name": "Hero Banner - New",
     "settings": [
       {
        "type": "select",
@@ -133,6 +223,10 @@
         ]
       },
       {
+        "type": "header",
+        "content": "Spacing/Padding"
+      },
+      {
         "type": "range",
         "id": "padding_top",
         "label": " Top Spacing",
@@ -151,34 +245,51 @@
         "unit": "px"
       },
       {
-        "type": "range",
-        "id": "margin_top",
-        "label": "Margin Top",
-        "min": 0,
-        "max": 80,
-        "default": 20,
-        "unit": "px"
+        "type": "header",
+        "content": "Desktop and Mobile Fontsize"
       },
       {
         "type": "range",
-        "id": "margin_bottom",
-        "label": "Margin Bottom",
+        "id": "font_size_mobile_header",
+        "label": " Mobile Header Fontsize",
         "min": 0,
         "max": 80,
         "default": 20,
-        "unit": "px"
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "font_size_mobile_text",
+        "label": " Mobile Text Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 18,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "font_size_desktop_header",
+        "label": " Desktop Header Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 35,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "font_size_desktop_text",
+        "label": " Desktop Text Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "step": 1
       }
     ],
     "blocks": [
       {
         "type": "image",
-        "name": "Image Block",
+        "name": "image block",
         "settings": [
-          {
-            "type": "url",
-            "label": "Image Link",
-            "id": "banner-link"
-          },
           {
             "type": "text",
             "label": "Event Title",
@@ -194,13 +305,54 @@
             "type": "image_picker",
             "label": "Mobile Image",
             "id": "image-mobile"
+          },
+          {
+            "type": "text",
+            "label": "Heading",
+            "default": "Place your heading here...",
+            "id": "block-heading"
+          },
+          {
+            "type": "textarea",
+            "label": " Description",
+            "default": "Description",
+            "id": "block-description"
+          },
+          {
+            "type": "text",
+            "label": " Button Text",
+            "default": "Shop Now",
+            "id": "block-button"
+          },
+          {
+            "type": "color",
+            "id": "color_text",
+            "default": "#000000",
+            "label": " Heading Color"
+          },
+          {
+            "type": "color",
+            "id": "color_desc",
+            "default": "#000000",
+            "label": "Description Color"
+          },
+          {
+            "type": "color",
+            "id": "button_bg_color",
+            "default": "#cc4800",
+            "label": " Button Background Color"
+          },
+          {
+            "type": "url",
+            "label": "Button Link",
+            "id": "button-link"
           }
         ]
       }
     ],
     "presets": [
       {
-        "name": "Hero Banner - OS",
+        "name": "Hero Banner - New",
         "category": "image"
       }
     ]
