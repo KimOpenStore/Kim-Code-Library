@@ -1,1 +1,367 @@
+/*** Colors Settings is not started yet 
+Created by: Kimson Pomento
+Date: 4/2/2023
+Section Name: Image With Text
+****/
 
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+.container {
+  padding-left: {{ section.settings.desktop_width_left }}px;
+  padding-right: {{ section.settings.desktop_width_right}}px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both
+}
+
+.column-66 {
+  float: left;
+  width: 66.66666%;
+  padding: 40px;
+}
+
+.column-33 {
+  float: left;
+  width: 33.33333%;
+}
+
+.large-font {
+  font-size: {{ section.settings.font_size_desktop_subheading  }}px;
+  color: {{ section.settings.subheading_color }};
+  line-height: 20px;
+}
+
+.xlarge-font {
+  font-size: {{ section.settings.font_size_desktop_header }}px;
+  color: {{ section.settings.header_color }};
+  line-height: 20px;
+}
+.description {
+  font-size: {{ section.settings.font_size_desktop_description }}px;
+  color: {{ section.settings.description_color }};
+}
+
+.button {
+  border: none;
+  color: {{ section.settings.button_color_text }};
+  padding: 14px 28px;
+  font-size: {{ section.settings.button_text }}px;
+  cursor: pointer;
+  background-color: {{ section.settings.button_bgcolor }};
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .column-66,
+  .column-33 {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+  img {
+    margin: auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  .xlarge-font {
+    font-size: {{ section.settings.font_size_mobile_header }}px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .large-font {
+    font-size: {{ section.settings.font_size_mobile_subheading }}px;
+  }
+} 
+@media screen and (max-width: 600px) {
+  .description {
+    font-size: {{ section.settings.font_size_mobile_description }}px;
+  }
+} 
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10px!important;
+  }
+}  
+  
+{%- endstyle -%}
+
+
+<div class="3image-with-text--{{ section.id }}">
+  <div style="text-align:center">
+    <h2 class="3IWT-heading">{{ section.settings.iwt-heading }}</h2>
+    <p>{{ section.settings.iwt-description }}</p>
+</div>
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'image' %}
+  <!-- Right Image -->
+<div class="container">
+  <div class="row">
+    <div class="column-66">
+      <h1 class="xlarge-font"><b>{{ block.settings.xlarge-font }}</b></h1>
+      <h1 class="large-font" style="color:MediumSeaGreen;"><b>{{ block.settings.large-font }}</b></h1>
+      <p><span class="description">{{ block.settings.description }}</p>
+      <a href="{{ block.settings.button-link-right }}"><button class="button">{{ block.settings.button-text }}</button></a>
+    </div>
+    <div class="column-33">
+        <img src="{{ block.settings.image | img_url:'master' }}" style="width: 531px; height: 531px;">
+    </div>
+  </div>
+</div>
+    {% when 'text' %}
+   <!-- Left Image -->       
+<div class="container">
+  <div class="row">
+    <div class="column-33">
+        <img src="{{ block.settings.image-left | img_url:'master' }}" style="width: 531px; height: 531px;">
+    </div>
+    <div class="column-66">
+      <h1 class="xlarge-font"><b>{{ block.settings.xlarge-font-left }}</b></h1>
+      <h1 class="large-font" style="color:MediumSeaGreen;"><b>{{ block.settings.large-font-left }}</b></h1>
+      <p><span class="description">{{ block.settings.description-left }}</p>
+      <a href="{{ block.settings.button-link-left }}"><button class="button">{{ block.settings.button-text-left }}</button></a>
+    </div>
+  </div>
+</div>
+      {% endcase %}
+    {% endfor %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "OS 3 Image With Text",
+    "settings": [
+      {
+        "type": "header",
+        "content": "3 Image With Text Settings"
+      },
+      {
+        "type": "text",
+        "id": "iwt-heading",
+        "label": "Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "iwt-description",
+        "label": "Description",
+        "default": "Description"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "header",
+        "content": "Section Styling"
+      },
+      {
+        "type": "header",
+        "content": "Mobile Font Size"
+      },
+      {
+        "type": "range",
+        "id": "font_size_mobile_header",
+        "label": " Mobile Header Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "font_size_mobile_subheading",
+        "label": " Mobile Subheading Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 18,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "font_size_mobile_description",
+        "label": " Mobile Description Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "step": 1
+      },
+      {
+        "type": "header",
+        "content": "Desktop Font Size"
+      },
+      {
+        "type": "range",
+        "id": "font_size_desktop_header",
+        "label": " Desktop Header Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 35,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "font_size_desktop_subheading",
+        "label": " Desktop Subheading Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "font_size_desktop_description",
+        "label": " Desktop Description Fontsize",
+        "min": 0,
+        "max": 80,
+        "default": 35,
+        "step": 1
+      },
+      {
+        "type": "header",
+        "content": "Desktop Width",
+        "info": "Make 0 for full width of Section/Block"
+      },
+      {
+        "type": "range",
+        "id": "desktop_width_left",
+        "label": " Desktop Width Left",
+        "min": 0,
+        "max": 400,
+        "default": 100,
+        "step": 100
+      },
+      {
+        "type": "range",
+        "id": "desktop_width_right",
+        "label": " Desktop Width Right",
+        "min": 0,
+        "max": 400,
+        "default": 100,
+        "step": 100
+      },
+      {
+        "type": "header",
+        "content": "Color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Right Image",
+        "settings": [
+          {
+            "type": "text",
+            "id": "xlarge-font",
+            "label": "Heading",
+            "default": "The App"
+          },
+          {
+            "type": "text",
+            "id": "large-font",
+            "label": "Sub-Heading",
+            "default": "Why buy it?"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "Description hereeee...."
+          },
+          {
+            "type": "image_picker",
+            "label": "Image",
+            "id": "image"
+          },
+          {
+            "type": "text",
+            "id": "button-text",
+            "label": "Button Text",
+            "default": "Download Application"
+          },
+          {
+            "type": "url",
+            "label": "Button Link",
+            "id": "button-link-right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Left Image",
+        "settings": [
+          {
+            "type": "text",
+            "id": "xlarge-font-left",
+            "label": "Heading",
+            "default": "The App"
+          },
+          {
+            "type": "text",
+            "id": "large-font-left",
+            "label": "Sub-Heading",
+            "default": "Why buy it?"
+          },
+          {
+            "type": "textarea",
+            "id": "description-left",
+            "label": "Description",
+            "default": "Description hereeee...."
+          },
+          {
+            "type": "image_picker",
+            "label": "Image",
+            "id": "image-left"
+          },
+          {
+            "type": "text",
+            "id": "button-text-left",
+            "label": "Button Text",
+            "default": "Download Application"
+          },
+          {
+            "type": "url",
+            "label": "Button Link",
+            "id": "button-link-left"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": " 3 Image With Text",
+        "category": "image"
+      }
+    ]
+  }
+{% endschema %}
