@@ -1,0 +1,62 @@
+/**** Unique Blocks from different themes ****/
+
+<style>
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  bottom: 0;
+  right: 15px;
+  z-index: 9;
+  border: 0px solid black;
+  padding: 10px;
+}
+
+.open-button {
+ border: 2px solid black;
+ border-radius: 5px;
+ padding: 10px;
+ margin-right: 80%;
+ text-align: center;
+
+}
+
+.open-button:hover {
+ background-color: white;
+ border; 2px solid black;
+ opacity: 0.6;
+
+}
+
+.cancel {
+ border: 1px solid black;
+ background-color: white;
+ color: black;
+ border-radius: 3px;
+ padding: 5px;
+ 
+} 
+
+</style>
+
+
+<div class="open-button" onclick="openChart()">What's my size?</div>
+
+<div class="form-popup" id="myChart">
+  <form action="/action_page.php" class="form-container">
+    <h1>Shoe Size Chart</h1>
+
+    <p> sample text here </p>
+    <button type="button" class="btn cancel" onclick="closeChart()">Close</button>
+  </form>
+</div>
+
+<script>
+function openChart() {
+  document.getElementById("myChart").style.display = "block";
+}
+
+function closeChart() {
+  document.getElementById("myChart").style.display = "none";
+}
+</script>
