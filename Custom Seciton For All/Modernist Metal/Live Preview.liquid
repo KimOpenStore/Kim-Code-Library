@@ -1,0 +1,181 @@
+<!--- This is added at the bottom of theme.liquid
+this If Script code is for Product Page Template and Page Template 
+to make sure the Live Preview will work. All custom fields or metafields
+created here is under by App named of ACF: Metafields Custom Fields. 
+
+For ACF: Metafields Custom Fields, to modify or check navigate to Custom Fields to Product
+and Custom Fields to Pages to see all settings and metafields created.
+
+For js liquid file that connected to this 2 script is listed below:
+preview-circular-address-sign.js
+preview-classic-address-stake.js.liquid
+preview-floral-garden-stake.js
+preview.js
+
+make sure all this liquid file is added to the new theme if planning to move again.
+---->
+<!--- Product Template Live Preview Script - Contact Kim Pomento for details 06/01/2023 start --->
+  
+  {% if product.metafields.preview.data.value != blank %}
+  <script>
+    var previewData = JSON.parse('{{product.metafields.preview.data.value | json}}');
+    var previewImages = {
+      "black": '{{ product.metafields.preview_image.black }}',
+      "metallic": '{{ product.metafields.preview_image.metallic }}',
+      "bronze": '{{ product.metafields.preview_image.bronze }}',
+      "white": '{{ product.metafields.preview_image.white }}',
+      "red": '{{ product.metafields.preview_image.red }}',
+      "blue": '{{ product.metafields.preview_image.blue }}'
+    };
+  </script>
+  <script src="{{ product.metafields.preview.data.value.script | asset_url }}" defer="defer"></script>
+  {% endif %}
+  {% if product.metafields.livepreview.id1 != blank %}
+    <script>
+      var previewImages = {
+        "black": '{{ product.metafields.livepreview.black }}',
+        "metallic": '{{ product.metafields.livepreview.metallic }}',
+        "bronze": '{{ product.metafields.livepreview.bronze }}',
+        "white": '{{ product.metafields.livepreview.white }}',
+        "red": '{{ product.metafields.livepreview.red }}',
+        "blue": '{{ product.metafields.livepreview.blue }}',
+        "pink": '{{ product.metafields.livepreview.pink }}',
+        "img_a": '{{ product.metafields.livepreview.image_a }}',
+        "img_b": '{{ product.metafields.livepreview.image_b }}',
+        "img_c": '{{ product.metafields.livepreview.image_c }}',
+        "img_d": '{{ product.metafields.livepreview.image_d }}',
+        "img_e": '{{ product.metafields.livepreview.image_e }}',
+        "img_f": '{{ product.metafields.livepreview.image_f }}',
+        "img_g": '{{ product.metafields.livepreview.image_g }}',
+        "img_h": '{{ product.metafields.livepreview.image_h }}',
+        "img_i": '{{ product.metafields.livepreview.image_i }}',
+        "img_j": '{{ product.metafields.livepreview.image_j }}',
+        "img_k": '{{ product.metafields.livepreview.image_k }}',
+        "img_l": '{{ product.metafields.livepreview.image_l }}',
+        "img_m": '{{ product.metafields.livepreview.image_m }}',
+        "img_n": '{{ product.metafields.livepreview.image_n }}',
+        "img_o": '{{ product.metafields.livepreview.image_o }}',
+        "img_p": '{{ product.metafields.livepreview.image_p }}',
+        "img_q": '{{ product.metafields.livepreview.image_q }}',
+        "img_r": '{{ product.metafields.livepreview.image_r }}',
+        "img_s": '{{ product.metafields.livepreview.image_s }}',
+        "img_t": '{{ product.metafields.livepreview.image_t }}',
+        "img_u": '{{ product.metafields.livepreview.image_u }}',
+        "img_v": '{{ product.metafields.livepreview.image_v }}',
+        "img_w": '{{ product.metafields.livepreview.image_w }}',
+        "img_x": '{{ product.metafields.livepreview.image_x }}',
+        "img_y": '{{ product.metafields.livepreview.image_y }}',
+        "img_z": '{{ product.metafields.livepreview.image_z
+         }}',
+      };
+      var previewData = {
+        product_id: '{{ product.id }}',
+        id1: '{{ product.metafields.livepreview.id1 }}',
+        id2: '{{ product.metafields.livepreview.id2 }}',
+        font1: '{{ product.metafields.livepreview.font1 }}',
+        font2: '{{ product.metafields.livepreview.font2 }}',
+        width1: '{{ product.metafields.livepreview.width1 }}',
+        width2: '{{ product.metafields.livepreview.width2 }}',
+        position1: '{{ product.metafields.livepreview.position1_y }}',
+        position2: '{{ product.metafields.livepreview.position2_y }}',
+        position3: '{{ product.metafields.livepreview.position1_x }}',
+        position4: '{{ product.metafields.livepreview.position2_x }}',
+        allow1: '{{ product.metafields.livepreview.allow1 }}',
+        allow2: '{{ product.metafields.livepreview.allow2 }}',
+        align1: '{{ product.metafields.livepreview.align1 }}',
+        align2: '{{ product.metafields.livepreview.align2 }}',
+        fontsize1: '{{ product.metafields.livepreview.fontsize1 }}',
+        fontsize2: '{{ product.metafields.livepreview.fontsize2 }}',
+        color1: '{{ product.metafields.livepreview.color1 }}',
+        color2: '{{ product.metafields.livepreview.color2 }}',
+        text_angle: '{{ product.metafields.livepreview.text_angle }}',
+        rotate: '{{ product.metafields.livepreview.rotate }}'
+      }
+    </script>
+    <script src="{{ 'preview.js' | asset_url }}" async></script>
+  {% endif %}
+
+  <!--- Product Template Live Preview Script - Contact Kim Pomento for details 06/01/2023 end --->
+  
+  <!--- Page Template Live Preview Script - Contact Kim Pomento for details 06/01/2023 start --->
+  
+    {% if page.metafields.preview.data.value != blank %}
+  <script>
+    var previewData = JSON.parse('{{page.metafields.preview.data.value | json}}');
+    var previewImages = {
+      "black": '{{ page.metafields.preview_black.image }}',
+      "metallic": '{{ page.metafields.preview_metallic.image }}',
+      "bronze": '{{ page.metafields.preview_bronze.image }}',
+      "white": '{{ page.metafields.preview_white.image }}',
+      "red": '{{ page.metafields.preview_red.image }}',
+      "blue": '{{ page.metafields.preview_blue.image }}'
+    };
+  </script>
+  <script src="{{ page.metafields.preview.data.value.script | asset_url }}" defer="defer"></script>
+  {% endif %}
+  {% if page.metafields.livepreview.id1 != blank %}
+    <script>
+      var previewImages = {
+        "black": '{{page.metafields.livepreview.black}}',
+        "metallic": '{{ page.metafields.livepreview.metallic }}',
+        "bronze": '{{ page.metafields.livepreview.bronze }}',
+        "white": '{{ page.metafields.livepreview.white }}',
+        "red": '{{ page.metafields.livepreview.red }}',
+        "blue": '{{ page.metafields.livepreview.blue }}',
+        "pink": '{{ page.metafields.livepreview.pink }}',
+        "img_a": '{{ page.metafields.livepreview.image_a }}',
+        "img_b": '{{ page.metafields.livepreview.image_b }}',
+        "img_c": '{{ page.metafields.livepreview.image_c }}',
+        "img_d": '{{ page.metafields.livepreview.image_d }}',
+        "img_e": '{{ page.metafields.livepreview.image_e }}',
+        "img_f": '{{ page.metafields.livepreview.image_f }}',
+        "img_g": '{{ page.metafields.livepreview.image_g }}',
+        "img_h": '{{ page.metafields.livepreview.image_h }}',
+        "img_i": '{{ page.metafields.livepreview.image_i }}',
+        "img_j": '{{ page.metafields.livepreview.image_j }}',
+        "img_k": '{{ page.metafields.livepreview.image_k }}',
+        "img_l": '{{ page.metafields.livepreview.image_l }}',
+        "img_m": '{{ page.metafields.livepreview.image_m }}',
+        "img_n": '{{ page.metafields.livepreview.image_n }}',
+        "img_o": '{{ page.metafields.livepreview.image_o }}',
+        "img_p": '{{ page.metafields.livepreview.image_p }}',
+        "img_q": '{{ page.metafields.livepreview.image_q }}',
+        "img_r": '{{ page.metafields.livepreview.image_r }}',
+        "img_s": '{{ page.metafields.livepreview.image_s }}',
+        "img_t": '{{ page.metafields.livepreview.image_t }}',
+        "img_u": '{{ page.metafields.livepreview.image_u }}',
+        "img_v": '{{ page.metafields.livepreview.image_v }}',
+        "img_w": '{{ page.metafields.livepreview.image_w }}',
+        "img_x": '{{ page.metafields.livepreview.image_x }}',
+        "img_y": '{{ page.metafields.livepreview.image_y }}',
+        "img_z": '{{ page.metafields.livepreview.image_z
+         }}',
+      };
+      var previewData = {
+        template_name: '{{ template.name }}',
+        id1: '{{ page.metafields.livepreview.id1 }}',
+        id2: '{{ page.metafields.livepreview.id2 }}',
+        font1: '{{ page.metafields.livepreview.font1 }}',
+        font2: '{{ page.metafields.livepreview.font2 }}',
+        width1: '{{ page.metafields.livepreview.width1 }}',
+        width2: '{{ page.metafields.livepreview.width2 }}',
+        position1: '{{ page.metafields.livepreview.position1_y }}',
+        position2: '{{ page.metafields.livepreview.position2_y }}',
+        position3: '{{ page.metafields.livepreview.position1_x }}',
+        position4: '{{ page.metafields.livepreview.position2_x }}',
+        allow1: '{{ page.metafields.livepreview.allow1 }}',
+        allow2: '{{ page.metafields.livepreview.allow2 }}',
+        align1: '{{ page.metafields.livepreview.align1 }}',
+        align2: '{{ page.metafields.livepreview.align2 }}',
+        fontsize1: '{{ page.metafields.livepreview.fontsize1 }}',
+        fontsize2: '{{ page.metafields.livepreview.fontsize2 }}',
+        color1: '{{ page.metafields.livepreview.color1 }}',
+        color2: '{{ page.metafields.livepreview.color2 }}',
+        text_angle: '{{ page.metafields.livepreview.text_angle }}',
+        rotate: '{{ page.metafields.livepreview.rotate }}'
+      }
+    </script>
+    <script src="{{ 'preview.js' | asset_url }}" async></script>
+  {% endif %}
+
+  <!--- Page Template Live Preview Script - Contact Kim Pomento for details 06/01/2023 end --->
