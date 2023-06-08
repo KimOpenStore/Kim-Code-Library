@@ -1,1 +1,73 @@
+Header.liquid
+<!-- Header and Menu -->
+{% if page.url contains section.settings.exclude_template1 or page.url contains section.settings.exclude_template2 or page.url contains section.settings.exclude_template3 %}
+	<main-header id="site-header" class="site-header {% if section.settings.hide_header %}hidden{% endif %}" data-js-inert {% if section.settings.sticky_header %} data-sticky-header {% endif %}>
+{% else %}
+	<main-header id="site-header" class="site-header" data-js-inert {% if section.settings.sticky_header %} data-sticky-header {% endif %}>
+{% endif %}
 
+<!-- Menu Only -->
+{% if page.url contains section.settings.exclude_template1 or page.url contains section.settings.exclude_template2 or page.url contains section.settings.exclude_template3 %}
+    <div class="header-container header-container--bottom {% if section.settings.hide_menu %} hidden {% endif %}{% if header_blocks == blank %} no-header-blocks {% endif %}
+    {% liquid
+      if section.settings.select_header_actions_on_mobile == 'show_always' or template == 'index' and section.settings.select_header_actions_on_mobile == 'show_on_homepage'
+        echo "show-header-actions-on-mobile"
+      else
+        echo 'portable-hide'
+      endif
+    %}
+  ">
+{% else %}
+    <div class="header-container header-container--bottom {% if header_blocks == blank %} no-header-blocks {% endif %}
+    {% liquid
+      if section.settings.select_header_actions_on_mobile == 'show_always' or template == 'index' and section.settings.select_header_actions_on_mobile == 'show_on_homepage'
+        echo "show-header-actions-on-mobile"
+      else
+        echo 'portable-hide'
+      endif
+    %}
+  ">
+{% endif %}
+
+{% schema %}    
+	  {
+        "type": "header",
+        "content": "Exclude Header on Pages",
+        "info": "Include the exact page handle where you want to exclude header."
+      },
+      {
+          "type": "text",
+          "id": "exclude_template1",
+          "label": "Page Handle 1",
+          "default": "handle-1"
+      },
+      {
+          "type": "text",
+          "id": "exclude_template2",
+          "label": "Page Handle 2",
+          "default": "handle-2"
+      },
+      {
+          "type": "text",
+          "id": "exclude_template3",
+          "label": "Page Handle 3",
+          "default": "handle-3"
+      },    
+	  {
+        "type": "header",
+        "content": "Select What to Hide",
+        "info": "Please uncheck Hide Header and Menu if you want to hide Menu Only."
+      },
+	  {
+		"type": "checkbox",
+		"id": "hide_header",
+		"label": "Hide Header and Menu",
+	  "default": false
+	  },
+	  {
+		"type": "checkbox",
+		"id": "hide_menu",
+		"label": "Hide Menu Only",
+	  "default": false
+	  }
+{% endschema %}
